@@ -1,3 +1,27 @@
+#include "aowMenu.h"
+#include "SKSE/API.h"
+
+const SKSE::MessagingInterface* g_messaging = nullptr;
+
+static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message)
+{
+	switch (message->type) {
+	case SKSE::MessagingInterface::kDataLoaded:
+		aowMenu::Register();
+		aowMenu::Show();
+		break;
+
+	case SKSE::MessagingInterface::kNewGame:
+		aowMenu::Show();
+		break;
+
+	case SKSE::MessagingInterface::kPostLoadGame:
+		aowMenu::Show();
+		break;
+	}
+}
+
+
 namespace
 {
 	void InitializeLog()
@@ -44,11 +68,17 @@ extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_skse)
 {
 	InitializeLog();
-	logger::info("{} v{}"sv, Plugin::NAME, Plugin::VERSION.string());
+
+	logger::info("loaded plugin");
 
 	SKSE::Init(a_skse);
 
-	RE::DebugNotification("test");
+	g_messaging = SKSE::GetMessagingInterface();
+	if (!g_messaging) {
+		logger::critical("Failed to load messaging interface! This error is fatal, plugin will not load.");
+		return false;
+	}
+	g_messaging->RegisterListener("SKSE", SKSEMessageHandler);
 
 	return true;
 }
