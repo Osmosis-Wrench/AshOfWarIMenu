@@ -48,5 +48,7 @@ extern "C" DLLEXPORT bool SKSEAPI SKSEPlugin_Load(const SKSE::LoadInterface* a_s
 
 	SKSE::Init(a_skse);
 
+	RE::DebugNotification("test");
+
 	return true;
 }
