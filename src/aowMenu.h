@@ -11,7 +11,6 @@ public:
 	aowMenu();
 
 	static void Register();
-	//static void Update();
 	static void Hide();
 	static void Show();
 
@@ -20,7 +19,7 @@ public:
 
 	static RE::stl::owner<RE::IMenu*> Creator() { return new aowMenu(); }
 
-	void AdvanceMovie(float a_interval, std::uint32_t a_currentTime) override;
+	//void AdvanceMovie(float a_interval, std::uint32_t a_currentTime) override;
 
 private:
 	class Logger : public RE::GFxLog

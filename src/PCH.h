@@ -22,5 +22,3 @@ namespace util
 }
 
 #define DLLEXPORT __declspec(dllexport)
-
-#include "Plugin.h"

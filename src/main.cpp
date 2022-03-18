@@ -21,7 +21,6 @@ static void SKSEMessageHandler(SKSE::MessagingInterface::Message* message)
 	}
 }
 
-
 namespace
 {
 	void InitializeLog()
@@ -56,8 +55,8 @@ namespace
 extern "C" DLLEXPORT constinit auto SKSEPlugin_Version = []() {
 	SKSE::PluginVersionData v;
 
-	v.PluginVersion(Plugin::VERSION);
-	v.PluginName(Plugin::NAME);
+	v.PluginVersion("1.0.0");
+	v.PluginName("aowMenu");
 
 	v.UsesAddressLibrary(true);
 	v.CompatibleVersions({ SKSE::RUNTIME_LATEST });

@@ -78,13 +78,13 @@ void aowMenu::Update()
 {
 
 }
-#endif
+
 
 // Every time a new frame of the menu is rendered call the update function.
 void aowMenu::AdvanceMovie(float a_interval, std::uint32_t a_currentTime)
 {
 	//aowMenu::Update();
-	RE::DebugNotification("ass");
 	RE::IMenu::AdvanceMovie(a_interval, a_currentTime);
 }
 
+#endif
